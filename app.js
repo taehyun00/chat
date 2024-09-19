@@ -18,8 +18,6 @@ const server = http.createServer(app)
 
 /* 생성된 서버를 socket.io에 바인딩 */
 const io = socket(server)
-
-const io = require('socket.io')(server);
 let users = [];
 
 app.use('/css', express.static('./static/css'))
