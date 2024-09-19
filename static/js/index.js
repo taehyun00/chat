@@ -66,3 +66,8 @@ function send() {
   // 스크롤을 자동으로 맨 아래로 이동
   chat.scrollTop = chat.scrollHeight
 }
+document.getElementById('test').addEventListener('keypress', function(event) {
+  if (event.key === 'Enter') {
+    send()
+  }
+})
