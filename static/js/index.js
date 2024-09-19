@@ -73,6 +73,21 @@ document.getElementById('test').addEventListener('keydown', function(event) {
     send();  // 메시지 전송
   }
 });
+  // 새로운 유저가 접속했을 때
+io.on('connection', (socket) => {
+  // 유저 이름을 받음
+  socket.on('newUser', (name) => {
+    users.push({ id: socket.id, name });
+    io.emit('updateUsers', users); // 모든 클라이언트에게 유저 목록을 업데이트
+  });
+
+  // 유저가 연결을 끊었을 때
+  socket.on('disconnect', () => {
+    users = users.filter(user => user.id !== socket.id);
+    io.emit('updateUsers', users); // 모든 클라이언트에게 유저 목록을 업데이트
+  });
+});
+
 
 /* 서버로부터 접속 중인 사용자 목록을 받은 경우 */
 socket.on('updateUsers', function(users) {
