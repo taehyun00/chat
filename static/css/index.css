@@ -51,3 +51,61 @@
   border-radius: 5px;
   margin-top: 10px;
 }
+/* 기본 스타일 (데스크탑) */
+#main {
+  width: 80%;
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+#chat {
+  height: 500px;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+#test {
+  width: 80%;
+  padding: 10px;
+}
+
+button {
+  padding: 10px;
+}
+
+/* 모바일 화면을 위한 스타일 */
+@media screen and (max-width: 768px) {
+  #main {
+    width: 95%;
+  }
+
+  #chat {
+    height: 400px;
+  }
+
+  #test {
+    width: 70%;
+  }
+
+  button {
+    width: 25%;
+    padding: 10px;
+  }
+}
+
+/* 아주 작은 모바일 화면 (예: 스마트폰) */
+@media screen and (max-width: 480px) {
+  #chat {
+    height: 300px;
+  }
+
+  #test {
+    width: 65%;
+  }
+
+  button {
+    width: 30%;
+    padding: 8px;
+  }
+}
