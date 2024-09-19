@@ -19,6 +19,9 @@ const server = http.createServer(app)
 /* 생성된 서버를 socket.io에 바인딩 */
 const io = socket(server)
 
+const io = require('socket.io')(server);
+let users = [];
+
 app.use('/css', express.static('./static/css'))
 app.use('/js', express.static('./static/js'))
 
@@ -58,7 +61,21 @@ io.sockets.on('connection', function(socket) {
     /* 보낸 사람을 제외한 나머지 유저에게 메시지 전송 */
     socket.broadcast.emit('update', data);
   })
+  // 새로운 유저가 접속했을 때
+io.on('connection', (socket) => {
+  // 유저 이름을 받음
+  socket.on('newUser', (name) => {
+    users.push({ id: socket.id, name });
+    io.emit('updateUsers', users); // 모든 클라이언트에게 유저 목록을 업데이트
+  });
 
+  // 유저가 연결을 끊었을 때
+  socket.on('disconnect', () => {
+    users = users.filter(user => user.id !== socket.id);
+    io.emit('updateUsers', users); // 모든 클라이언트에게 유저 목록을 업데이트
+  });
+});
+  
   /* 접속 종료 */
   socket.on('disconnect', function() {
     console.log(socket.name + '님이 나가셨습니다.')
@@ -72,4 +89,7 @@ io.sockets.on('connection', function(socket) {
 server.listen(8080, function() {
   console.log('서버 실행 중..')
 })
+
+
+
 
