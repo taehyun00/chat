@@ -66,8 +66,11 @@ function send() {
   // 스크롤을 자동으로 맨 아래로 이동
   chat.scrollTop = chat.scrollHeight
 }
-document.getElementById('test').addEventListener('keypress', function(event) {
+
+document.getElementById('test').addEventListener('keydown', function(event) {
   if (event.key === 'Enter') {
-    send()
+    event.preventDefault();  // 기본 엔터 동작 방지
+    send();  // 메시지 전송
   }
-})
+});
+
