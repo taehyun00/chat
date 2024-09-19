@@ -130,3 +130,12 @@ button {
   cursor: pointer;
 }
 
+#users {
+  border-top: 1px solid #ccc;
+  margin-top: 10px;
+  padding-top: 10px;
+  font-size: 14px;
+  color: #333;
+}
+
+
