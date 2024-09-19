@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>채팅</title>
     <link rel="stylesheet" href="/css/index.css">
     <script src="/socket.io/socket.io.js"></script>
@@ -10,16 +10,21 @@
   </head>
   <body>
     <div id="main">
+      <!-- 사용자 목록 -->
+      <div id="users">
+        <!-- 접속 중인 사용자 목록 -->
+      </div>
+      
+      <!-- 채팅 영역 -->
       <div id="chat">
         <!-- 채팅 메시지 영역 -->
       </div>
-       <div id="message-container">
+
+      <!-- 메시지 입력 영역 -->
+      <div id="message-container">
         <input type="text" id="test" placeholder="메시지를 입력해주세요..">
         <button onclick="send()">전송</button>
       </div>
-      <div id="users">
-    <!-- 접속 중인 사용자 목록 -->
-    </div>
     </div>
   </body>
 </html>
