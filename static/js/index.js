@@ -74,21 +74,16 @@ document.getElementById('test').addEventListener('keydown', function(event) {
   }
 });
 
-const io = require('socket.io')(server);
-let users = [];
+/* 서버로부터 접속 중인 사용자 목록을 받은 경우 */
+socket.on('updateUsers', function(users) {
+  var userDiv = document.getElementById('users');
+  userDiv.innerHTML = '';  // 기존 목록 지우기
 
-// 새로운 유저가 접속했을 때
-io.on('connection', (socket) => {
-  // 유저 이름을 받음
-  socket.on('newUser', (name) => {
-    users.push({ id: socket.id, name });
-    io.emit('updateUsers', users); // 모든 클라이언트에게 유저 목록을 업데이트
-  });
-
-  // 유저가 연결을 끊었을 때
-  socket.on('disconnect', () => {
-    users = users.filter(user => user.id !== socket.id);
-    io.emit('updateUsers', users); // 모든 클라이언트에게 유저 목록을 업데이트
+  users.forEach(function(user) {
+    var userElement = document.createElement('div');
+    userElement.textContent = user.name; // 사용자 이름 추가
+    userDiv.appendChild(userElement);  // 목록에 추가
   });
 });
+
 
