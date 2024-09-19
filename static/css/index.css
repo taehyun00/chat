@@ -136,6 +136,9 @@ button {
   padding-top: 10px;
   font-size: 14px;
   color: #333;
+  background-color: #f9f9f9; /* 배경색 추가 */
+  z-index : 10;
 }
+
 
 
