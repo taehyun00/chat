@@ -82,7 +82,7 @@ socket.on('updateUsers', function(users) {
   users.forEach(function(user) {
     var userElement = document.createElement('div');
     userElement.textContent = user.name; // 사용자 이름 추가
-    userElement.id = `user-${user.id}`; // 각 사용자에게 고유 ID 부여
+    userElement.id = `user-${user.id}`; // 사용자 ID로 고유 ID 생성
     userDiv.appendChild(userElement);  // 목록에 추가
   });
 });
